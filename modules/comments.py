@@ -107,7 +107,8 @@ def search_line(data_token,lines):
 	logging.debug("Searching Line For Token")
 	for line in lines:
 #		logging.debug("Debug Comment Line: " + line)
-		if re.match("(    |&gt;)",line) is None: # Don't look in code or quotes
+		#NOTE: Markup should be at the start of the line, and shouldn't contain HTML entities like &gt;
+		if re.match("(^    |^>)",line) is None: # Don't look in code or quotes
 			for token in data_token: # Check each type of token
 				if token in line:
 					return token
